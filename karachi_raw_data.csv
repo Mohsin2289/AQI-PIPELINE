@@ -1,2 +1,2 @@
-
+timestamp,city,aqi,pm25,pm10,no2,co,o3,so2,nh3,temperature,humidity,pressure,wind_speed
 2026-04-23 08:11:16,Karachi,3,33.04,84.4,0.05,104.24,50.32,0.32,0,28.72,70,1007,7.7
