@@ -98,6 +98,7 @@ def build_clean_dataset():
         return
 
     df = pd.read_csv(RAW_FILE)
+    df.columns = df.columns.str.strip().str.lower()
     df["timestamp"] = pd.to_datetime(df["timestamp"])
     df = df.sort_values("timestamp").drop_duplicates("timestamp")
     df = df.dropna(subset=["aqi", "temperature", "humidity"])
