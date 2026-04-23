@@ -6,7 +6,7 @@ from datetime import datetime
 # =========================
 # CONFIG
 # =========================
-OPENWEATHER_KEY = os.environ.get("OPENWEATHER_KEY", "d6013d7ec9d58abbea7a6c920fa33cd2")
+OPENWEATHER_KEY = os.environ.get("OPENWEATHER_KEY")
 LAT = 24.8607
 LON = 67.0011
 CITY = "Karachi"
