@@ -1,0 +1,35 @@
+name: Collect AQI Data
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install libraries
+        run: pip install pandas requests
+
+      - name: Run script
+        env:
+          OPENWEATHER_KEY: ${{ secrets.OPENWEATHER_KEY }}
+        run: python AQI_Project.py
+
+      - name: Save CSV to repo
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add karachi_raw_data.csv karachi_clean_dataset.csv
+          git diff --cached --quiet || git commit -m "AQI data update: $(date -u)"
+          git push
