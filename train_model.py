@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import classification_report, accuracy_score, mean_squared_error, mean_absolute_error, r2_score
 import joblib
 import os
 
@@ -80,7 +80,12 @@ importances = pd.Series(model.feature_importances_, index=FEATURES)
 importances = importances.sort_values(ascending=False)
 for feat, score in importances.items():
     print(f"  {feat:20s}: {score:.4f}")
-
+rmse = mean_squared_error(y_test, y_pred) ** 0.5
+mae  = mean_absolute_error(y_test, y_pred)
+r2   = r2_score(y_test, y_pred)
+print(f"\nRMSE: {rmse:.4f}")
+print(f"MAE:  {mae:.4f}")
+print(f"R²:   {r2:.4f}")
 # =========================
 # SAVE MODEL
 # =========================
